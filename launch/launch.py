@@ -29,6 +29,7 @@ def generate_launch_description():
             executable='joint_state_publisher_gui',
 
     )
+
     
     
 
@@ -36,4 +37,5 @@ def generate_launch_description():
     return LaunchDescription([
         node_robot_state_publisher,
         joint_publ
+
     ])

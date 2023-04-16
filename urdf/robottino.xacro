@@ -4,5 +4,5 @@
     <xacro:include filename="o_core.xacro" />
     <xacro:include filename="includimi.xacro" />
     <xacro:include filename="control_gaz.xacro" />
-
+    <xacro:include filename="lidar.xacro" />
 </robot>

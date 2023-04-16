@@ -36,6 +36,12 @@ def generate_launch_description():
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'my_bot'],
                         output='screen')
+    vel_publ =Node(
+            package='teleop_twist_keyboard',
+            executable='teleop_twist_keyboard',
+            prefix = 'xterm -e',
+            output='screen',
+    )
 
 
 
@@ -44,4 +50,5 @@ def generate_launch_description():
         rsp,
         gazebo,
         spawn_entity,
+        vel_publ
     ])
