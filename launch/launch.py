@@ -10,10 +10,13 @@ def generate_launch_description():
     # Specify the name of the package and path to xacro file within the package
     pkg_name = 'mobilo'
     file_subpath = 'urdf/robottino.xacro'
+    rviz_path = 'config/config.rviz'
 
 
     # Use xacro to process the file
     xacro_file = os.path.join(get_package_share_directory(pkg_name),file_subpath)
+    path_file = os.path.join(get_package_share_directory(pkg_name),rviz_path)
+    print(path_file)
     robot_description_raw = xacro.process_file(xacro_file).toxml()
 
 
@@ -24,10 +27,8 @@ def generate_launch_description():
         output='screen',
         parameters=[{'robot_description': robot_description_raw}] # add other parameters here if required
     )
-    joint_publ =Node(
-            package='joint_state_publisher_gui',
-            executable='joint_state_publisher_gui',
-
+    rviz=Node(
+          package='rviz2', executable='rviz2', name="rviz2", output='screen', arguments=['-d'+str(path_file)]
     )
 
     
@@ -36,6 +37,5 @@ def generate_launch_description():
     # Run the node
     return LaunchDescription([
         node_robot_state_publisher,
-        joint_publ
-
+        rviz
     ])
